@@ -16,7 +16,12 @@ const projectFolder = path.join(tmpfolderpath,blueprintID,"/");
 if(!fs.existsSync(projectFolder)){
     // If not created, unzip.
     console.log("Extract in ",projectFolder);
-    unzip(path.join(__dirname,"./"+blueprintID+".zip"), projectFolder).then(run);
+    console.log("Please wait a second....")
+    fs.copyFileSync(path.join(__dirname,"./"+blueprintID+".zip"),path.join(tmpfolderpath,"./"+blueprintID+".zip"));
+    unzip(path.join(tmpfolderpath,"./"+blueprintID+".zip"), projectFolder).then(()=>{
+        console.log("Success!");
+        run();
+    });
 }else{
     run();
 }

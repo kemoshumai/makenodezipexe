@@ -10,7 +10,7 @@ cli
     .option('--src <folderpath>', 'A folder that includes package.json(Default:src)')
     .option('--unique <string>', 'A blueprint ID to distinguish between files.(Default:Automatic generation with SHA256)')
     .action((options) => {
-        const sourcefolderpath = path.join(__dirname,(options.src || "./src"));
+        const sourcefolderpath = options.src || path.join(__dirname,"./src");
         const unique = options.unique || crypto.createHash('sha256').update(crypto.randomBytes(16), 'utf8').digest('hex');
         console.log("Folder:",sourcefolderpath);
         console.log("UniqueID:",unique);
