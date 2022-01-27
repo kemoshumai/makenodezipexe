@@ -33,7 +33,7 @@ function run(){
     }
 
 
-    const child = spawn("node.exe",[path.join(projectFolder,indexfile)],{
+    const child = spawn("./emb_node.exe",[path.join(projectFolder,indexfile)],{
         stdio: 'ignore',
         detached: true,
         env: process.env

@@ -31,7 +31,7 @@ cli
                 for(const file of fileList){
                     fs.copySync(path.join(__dirname,"./bundler",path.basename(file)),path.join(tmpfolderpath,file));
                 }
-                child_process.execSync(`cd ${path.join(__dirname,"./_tmp")} & nexe bundler.js --output ${path.join(process.cwd(),"./dist.exe")} --target windows-x64-14.15.1 -r "./${unique}.zip" -r "./node.exe" `);
+                child_process.execSync(`cd ${path.join(__dirname,"./_tmp")} & nexe bundler.js --output ${path.join(process.cwd(),"./dist.exe")} --target windows-x64-14.15.1 -r "./${unique}.zip" -r "./emb_node.exe" `);
                 fs.remove(tmpfolderpath);
             });
         }
