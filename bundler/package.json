@@ -3,5 +3,7 @@
   "version": "1.0.0",
   "main": "bundler.js",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "zip-unzip-promise": "github:honeo/zip-unzip-promise"
+  }
 }
