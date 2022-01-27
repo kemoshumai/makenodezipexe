@@ -11,12 +11,15 @@ if(!blueprintID){
     throw 'ZIP Not Found!';
 }
 
-const projectFolder = path.join(tmpfolderpath,blueprintID);
+const projectFolder = path.join(tmpfolderpath,blueprintID,"/");
 
 if(!fs.existsSync(projectFolder)){
     // If not created, unzip.
     console.log("Extract in ",projectFolder);
-    fs.createReadStream(path.join(__dirname,"./"+blueprintID+".zip")).pipe(unzipper.Extract({ path: projectFolder })).on('close',()=>{
+    console.log("Zip file:",path.join(__dirname,"./"+blueprintID+".zip"));
+    console.log("Exists:",fs.existsSync(path.join(__dirname,"./"+blueprintID+".zip")));
+    const st = fs.createReadStream(path.join(__dirname,"./"+blueprintID+".zip")).pipe(unzipper.Extract({ path: projectFolder }));
+    st.on('close',()=>{
         console.log("Success!");
         run();
     });
