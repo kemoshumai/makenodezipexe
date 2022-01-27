@@ -4,6 +4,9 @@
   "main": "app.js",
   "author": "kemoshumai <87066961+kemoshumai@users.noreply.github.com>",
   "license": "MIT",
+  "bin": {
+    "makenodezipexe":"node ./app.js"
+  },
   "dependencies": {
     "archiver": "^5.3.0",
     "cac": "^6.7.12",
