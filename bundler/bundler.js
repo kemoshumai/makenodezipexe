@@ -33,7 +33,12 @@ function run(){
     }
 
 
-    const child = spawn("./emb_node.exe",[path.join(projectFolder,indexfile)],{
+    const exefilepath = path.join(tmpfolderpath,`./${blueprintID}_emb_node.exe`);
+    if(!fs.existsSync(exefilepath)){
+        console.log("Copying embed node....");
+        fs.copyFileSync(path.join(__dirname,"./emb_node.exe"), exefilepath);
+    }
+    const child = spawn(exefilepath,[path.join(projectFolder,indexfile)],{
         stdio: 'ignore',
         detached: true,
         env: process.env
