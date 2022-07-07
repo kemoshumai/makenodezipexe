@@ -15,19 +15,30 @@ const projectFolder = path.join(tmpfolderpath,blueprintID,"/");
 
 if(!fs.existsSync(projectFolder)){
     // If not created, unzip.
+    install();
+}else{
+    run();
+}
+
+function install(){
     console.log("Extract in ",projectFolder);
-    console.log("Please wait a second....")
+    console.log("Now installing.... Please wait....");
     fs.copyFileSync(path.join(__dirname,"./"+blueprintID+".zip"),path.join(tmpfolderpath,"./"+blueprintID+".zip"));
     unzip(path.join(tmpfolderpath,"./"+blueprintID+".zip"), projectFolder).then(()=>{
         console.log("Success!");
         run();
     });
-}else{
-    run();
 }
 
 function run(){
-    const indexfile = JSON.parse(fs.readFileSync(path.join(projectFolder,"./package.json")))["main"];
+    const packagejsonfilepath = path.join(projectFolder,"./package.json");
+    if(!fs.existsSync(packagejsonfilepath)){
+        // If package.json is deleted.
+        console.log("package.json is not found. Reinstall.");
+        install();
+        return;
+    }
+    const indexfile = JSON.parse(fs.readFileSync(packagejsonfilepath))["main"];
     if(indexfile == undefined){
         throw `Not found 'main' on package.json`;
     }
