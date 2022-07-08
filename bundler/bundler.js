@@ -46,7 +46,7 @@ if(!blueprintID){
     throw i18n('ZIP Not Found!');
 }
 
-const projectFolder = path.join(tmpfolderpath,blueprintID,"/");
+const projectFolder = path.join(tmpfolderpath,"ks_mnze_"+blueprintID,"/");
 
 if(!fs.existsSync(projectFolder)){
     // If not created, unzip.
